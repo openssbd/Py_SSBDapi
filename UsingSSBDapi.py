@@ -69,35 +69,35 @@ resultdata = q.meta_data('basedon', 'sim')
 
 # ## Using ssbdapi function 'meta_data' to search for 'osaka' in the field 'address'
 
-# In[11]:
+# In[ ]:
 
 resultdata = q.meta_data('address', 'osaka')
 
 
 # ## Using ssbdapi function 'meta_data' to search for 'osaka' in the field 'address'
 
-# In[12]:
+# In[ ]:
 
 resultdata = q.meta_data(field='contributors', search='keller')
 
 
 # ## Using ssbdapi function 'data' to search for string '505' in the field 'localid'
 
-# In[13]:
+# In[ ]:
 
 resultdata = q.data(field='localid', search='505')
 
 
 # ## Return data is in JSON format
 
-# In[14]:
+# In[ ]:
 
 print resultdata
 
 
 # ## Retrieve function to get all the coordinates at a specific time point
 
-# In[15]:
+# In[11]:
 
 def retrieve_coord_tp(bdmlID, timept, display='on'):
     q=ssbdapi.ssbd()
@@ -117,21 +117,21 @@ def retrieve_coord_tp(bdmlID, timept, display='on'):
 
 # ## Call retrieve coordinates function to get the coordinates of BDMLID that contains string 'd15115' at time point 15
 
-# In[16]:
+# In[12]:
 
 resultdata=retrieve_coord_tp('d15115', 15)
 
 
 # ## Using the ssbdapi function 'scale' and search for bdmlID using field 'bdml__bdml_ID' 
 
-# In[17]:
+# In[13]:
 
 s=q.scale(field='bdml__bdml_ID', search='d15115') 
 
 
 # ## Setup a canvas to display 3D graphics
 
-# In[18]:
+# In[14]:
 
 canvas(title="Displaying 3D graphics", background=(0.8,0.8,0.8) )
 c = color.red
@@ -143,7 +143,7 @@ Z = 0
 
 # ## Visualization - displaying the coordinates as sphere in 3D
 
-# In[19]:
+# In[15]:
 
 for j in s['objects']:
     sx = j['xScale']
@@ -154,7 +154,7 @@ for j in s['objects']:
     tu = j['tUnit']
 
 
-# In[20]:
+# In[16]:
 
 for i in resultdata['objects']:
         sphere(pos=(i['x']*sx, i['y']*sy, i['z']*sz), color=c, radius=i['radius'])
@@ -162,7 +162,7 @@ for i in resultdata['objects']:
 
 # ## Analysis - plotting the proliferation curve
 
-# In[21]:
+# In[17]:
 
 no_of_nucleus = []
 timept = []
@@ -182,7 +182,7 @@ while nn > 0:
 
 # ## Get the title, organism and contact name of the dataset
 
-# In[24]:
+# In[18]:
 
 q.set_display('off')
 resultmetadata = q.data(field='bdmlUUID', search='d15115')
@@ -195,7 +195,7 @@ for i in resultmetadata['objects']:
 
 # ## Plotting the curve
 
-# In[26]:
+# In[19]:
 
 fig=plt.figure()
 plt.plot(timept, no_of_nucleus, 'r')
@@ -208,7 +208,7 @@ plt.title(plottitle);
 
 # ### Plotting using actual time instead of time point
 
-# In[28]:
+# In[20]:
 
 tmp=np.array(timept)
 time=tmp*st
